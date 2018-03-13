@@ -64,5 +64,5 @@ var MCCordovaPlugin = {
   }
 };
 
-module.exports MCCordovaPlugin;
+module.exports = MCCordovaPlugin;
 
