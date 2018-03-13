@@ -17,7 +17,7 @@ import io.ionic.starter.R;
 
 public class MCCordovaPluginApplication extends Application {
 
-    private static final String TAG = "~#MCSdkCordovaApp";
+    private static final String TAG = "MCCordovaPluginApplication";
     private static Context context;
 
     public static Context getAppContext() {

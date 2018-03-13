@@ -1,68 +1,59 @@
-console.log("MCCordovaPlugin");
+console.log("MCCordovaPlugin init");
 var exec = require('cordova/exec');
 
-var PLUGIN_NAME = 'MCCordovaPlugin';
+function MCCordovaPlugin() { 
+  console.log("MCCordovaPlugin.js: is created");
+}
 
-var MCCordovaPlugin = {
-  //test
-  testFunction: function(successCallback, errorCallback){
-    cordova.exec(successCallback, errorCallback, "MCCordovaPlugin", "testFunction");
-  },
-  //Logging
-  enableVerboseLogging: function(successCallback, errorCallback){
-    cordova.exec(successCallback, errorCallback, "MCCordovaPlugin", "enableVerboseLogging");
-  },
+// SUBSCRIBER KEY //
+MCCordovaPlugin.prototype.setSubscriberKey = function(subscriberKey, success, error){
+  exec(success, error , "MCCordovaPlugin", 'setSubscriberKey', [subscriberKey]);
+}
+MCCordovaPlugin.prototype.getSubscriberKey = function(success, error){
+  exec(success, error , "MCCordovaPlugin", 'getSubscriberKey', []);
+}
+// ATTRIBUTES //
+MCCordovaPlugin.prototype.addAttribute = function(key, value, success, error){
+  exec(success, error , "MCCordovaPlugin", 'addAttribute', [key, value]);
+}
+MCCordovaPlugin.prototype.removeAttribute = function(key, success, error){
+  exec(success, error , "MCCordovaPlugin", 'removeAttribute', [key]);
+}
+// TAGS //
+MCCordovaPlugin.prototype.addTag = function(tag, success, error){
+  exec(success, error , "MCCordovaPlugin", 'addTag', [tag]);
+}
+MCCordovaPlugin.prototype.removeTag = function(tag, success, error){
+  exec(success, error , "MCCordovaPlugin", 'removeTag', [tag]);
+}
+// MONITOR LOCATION //
+MCCordovaPlugin.prototype.startWatchingLocation = function(success, error){
+  exec(success, error , "MCCordovaPlugin", 'startWatchingLocation', []);
+}
+MCCordovaPlugin.prototype.stopWatchingLocation = function(success, error){
+  exec(success, error , "MCCordovaPlugin", 'stopWatchingLocation', []);
+}
+MCCordovaPlugin.prototype.isWatchingLocation = function(success, error){
+  exec(success, error , "MCCordovaPlugin", 'isWatchingLocation', []);
+}
+// SDK STATE //
+MCCordovaPlugin.prototype.getSDKState = function(success, error){
+  exec(success, error , "MCCordovaPlugin", 'getSDKState', []);
+}
+// NOTIFICATION CALLBACK //
+MCCordovaPlugin.prototype.onNotification = function( callback ){
+  MCCordovaPlugin.prototype.onNotificationReceived = callback;
+  exec(function(result){ console.log("Notification callback OK") }, function(result){ console.log("Notification callback ERROR") }, "MCCordovaPlugin", 'registerNotification',[]);
+}
 
-  disableVerboseLogging: function(successCallback, errorCallback){
-    cordova.exec(successCallback, errorCallback, "MCCordovaPlugin", "disableVerboseLogging");
-  },
+// DEFAULT NOTIFICATION CALLBACK //
+MCCordovaPlugin.prototype.onNotificationReceived = function(payload){
+  console.log("Received push notification")
+  console.log(payload)
+}
+// READY //
+exec(function(result){ console.log("MCCordovaPlugin Ready OK") }, function(result){ console.log("MCCordovaPlugin Ready ERROR") }, "MCCordovaPlugin",'ready',[]);
 
-  //push
-  enablePush: function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, "MCCordovaPlugin", "enablePush", []);
-  },
-  disablePush: function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, "MCCordovaPlugin", "disablePush", []);
-  },
-  isPushEnabled: function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, "MCCordovaPlugin", "isPushEnabled", []);
-  },
-
-  //Get system token.
-  getSystemToken: function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, "MCCordovaPlugin", "getSystemToken", []);
-  },
-
-  //Attributes
-  getAttributes: function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, "MCCordovaPlugin", "getAttributes", []);
-  },         
-  setAttribute: function(successCallback, errorCallback, key, value) {
-    cordova.exec(successCallback, errorCallback, "MCCordovaPlugin", "setAttribute", [key,value]);
-  },           
-  clearAttribute: function(successCallback, errorCallback, key) {
-    cordova.exec(successCallback, errorCallback, "MCCordovaPlugin", "clearAttribute", [key]);
-  },
-
-  //ContactKey           
-  setContactKey: function(successCallback, errorCallback, contactKey) {
-    cordova.exec(successCallback, errorCallback, "MCCordovaPlugin", "setContactKey", [contactKey]);
-  }, 
-  getContactKey: function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, "MCCordovaPlugin", "getContactKey", []);
-  },
-
-  //Tags           
-  addTag: function(successCallback, errorCallback, tag) {
-    cordova.exec(successCallback, errorCallback, "MCCordovaPlugin", "addTag", [tag]);
-  }, 
-  removeTag: function(successCallback, errorCallback, tag) {
-    cordova.exec(successCallback, errorCallback, "MCCordovaPlugin", "removeTag", [tag]);
-  }, 
-  getTags: function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, "MCCordovaPlugin", "getTags", []);
-  }
-};
-
+var MCCordovaPlugin = new MCCordovaPlugin();
 module.exports = MCCordovaPlugin;
 
