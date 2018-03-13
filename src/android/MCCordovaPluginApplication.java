@@ -30,13 +30,13 @@ public class MCCordovaPluginApplication extends Application {
         super.onCreate();
         context = getApplicationContext();
 
-        Log.d("entra build #######");
+        Log.d("mydebug", "entra build #######");
         boolean mcAnalyticsEnabled = "enabled".equalsIgnoreCase(getString(R.string.MCANALYTICS));
-        Log.d(getString(R.string.MCANALYTICS));
-        Log.d(getString(R.string.APPID));
-        Log.d(getString(R.string.ACCESSTOKEN));
-        Log.d(getString(R.string.GCMSENDERID));
-        Log.d(getString(R.string.CHANNELNAME));
+        Log.d("myvars", getString(R.string.MCANALYTICS));
+        Log.d("myvars", getString(R.string.APPID));
+        Log.d("myvars", getString(R.string.ACCESSTOKEN));
+        Log.d("myvars", getString(R.string.GCMSENDERID));
+        Log.d("myvars", getString(R.string.CHANNELNAME));
 
         MarketingCloudSdk.init(this, MarketingCloudConfig.builder()
                 .setApplicationId(getString(R.string.APPID))
@@ -47,7 +47,7 @@ public class MCCordovaPluginApplication extends Application {
                 .setNotificationChannelName(String.valueOf(R.string.CHANNELNAME))
                 .build(), new MarketingCloudSdk.InitializationListener() {
             @Override public void complete(InitializationStatus status) {
-        Log.d("entra build #######");
+        Log.d("mydebug", "entra build #######");
                 if (status.isUsable()) {
                     RegistrationManager registrationManager = MarketingCloudSdk.getInstance().getRegistrationManager();
                     RegistrationManager.Editor registrationEditor = registrationManager.edit();
