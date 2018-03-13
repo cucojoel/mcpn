@@ -24,7 +24,7 @@ import java.util.Set;
 
 @SuppressWarnings("ConstantConditions")
 public class MCCordovaPlugin extends CordovaPlugin {
-    private static final String TAG = "MCCordovaPlugin";
+    private static final String TAG = "~#MCSdkCordovaPlugin";
     private static final String ACTION_GET_SYSTEM_TOKEN = "getSystemToken";
     private static final String ACTION_ENABLE_PUSH = "enablePush";
     private static final String ACTION_DISABLE_PUSH = "disablePush";

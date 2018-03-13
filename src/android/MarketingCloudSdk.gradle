@@ -1,16 +1,16 @@
 allprojects {
     repositories {
         maven { url "http://salesforce-marketingcloud.github.io/JB4A-SDK-Android/repository" }
+        maven{ url 'https://maven.google.com' }
     }
 }
 
 dependencies {
     implementation ('com.salesforce.marketingcloud:marketingcloudsdk:5.3.+') {
         exclude module: 'android-beacon-library'
-        exclude module: 'play-services-location'
+        //exclude module: 'play-services-location'
     }
 }
-
 
 ext.postBuildExtras = {
     android {
