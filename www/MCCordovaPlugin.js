@@ -43,7 +43,11 @@ MCCordovaPlugin.prototype.getSDKState = function(success, error){
 // NOTIFICATION CALLBACK //
 MCCordovaPlugin.prototype.onNotification = function( callback ){
   MCCordovaPlugin.prototype.onNotificationReceived = callback;
-  exec(function(result){ console.log("Notification callback OK") }, function(result){ console.log("Notification callback ERROR") }, "MCCordovaPlugin", 'registerNotification',[]);
+  exec(function(result){ 
+    console.log('result01');
+    console.log(result);
+    console.log("Notification callback OK") }, function(result){ console.log('result02');
+    console.log(result); console.log("Notification callback ERROR") }, "MCCordovaPlugin", 'registerNotification',[]);
 }
 
 // DEFAULT NOTIFICATION CALLBACK //
@@ -52,7 +56,9 @@ MCCordovaPlugin.prototype.onNotificationReceived = function(payload){
   console.log(payload)
 }
 // READY //
-exec(function(result){ console.log("MCCordovaPlugin Ready OK") }, function(result){ console.log("MCCordovaPlugin Ready ERROR") }, "MCCordovaPlugin",'ready',[]);
+exec(function(result){   console.log('result1');  console.log(result);  console.log("MCCordovaPlugin Ready OK") }, 
+  function(result){     console.log('result2');    console.log(result);    console.log("MCCordovaPlugin Ready ERROR")   }, 
+  "MCCordovaPlugin",'ready',[]  );
 
 var MCCordovaPlugin = new MCCordovaPlugin();
 module.exports = MCCordovaPlugin;

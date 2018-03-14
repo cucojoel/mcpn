@@ -22,9 +22,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import org.apache.cordova.CordovaWebView;
+import org.apache.cordova.CordovaInterface;
+
 @SuppressWarnings("ConstantConditions")
 public class MCCordovaPlugin extends CordovaPlugin {
     private static final String TAG = "MCCordovaPlugin";
+    public static CordovaWebView gWebView;
+
     private static final String ACTION_GET_SYSTEM_TOKEN = "getSystemToken";
     private static final String ACTION_ENABLE_PUSH = "enablePush";
     private static final String ACTION_DISABLE_PUSH = "disablePush";
@@ -40,7 +45,15 @@ public class MCCordovaPlugin extends CordovaPlugin {
     private static final String ACTION_ENABLE_VERBOSE_LOGGING = "enableVerboseLogging";
     private static final String ACTION_DISABLE_VERBOSE_LOGGING = "disableVerboseLogging";
 
-    @Override
+
+    public MCCordovaPlugin() {}
+
+        public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        super.initialize(cordova, webView);
+        gWebView = webView;
+        Log.d(TAG, "MCCordovaPlugin INITIALZE");
+    }
+
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         Log.v(TAG, String.format(Locale.ENGLISH, "EXECUTING ACTION: %s", action));
 
@@ -74,7 +87,7 @@ public class MCCordovaPlugin extends CordovaPlugin {
             case ACTION_DISABLE_VERBOSE_LOGGING:
                 return handleDisableVerboseLogging(callbackContext);
             default:
-                callbackContext.error("Invalid action");
+                callbackContext.error("Invalid action to do");
                 return false;
         }
     }
